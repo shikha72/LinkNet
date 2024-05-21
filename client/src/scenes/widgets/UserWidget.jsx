@@ -1,8 +1,6 @@
 import {
   ManageAccountsOutlined,
   EditOutlined,
-  LocationOnOutlined,
-  WorkOutlineOutlined,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 import UserImage from "components/UserImage";
@@ -38,13 +36,19 @@ const UserWidget = ({ userId, picturePath }) => {
     return null;
   }
 
+  /*
+  location->year
+  occupation->branch
+  */
   const {
     firstName,
     lastName,
-    location,
-    occupation,
-    viewedProfile,
-    impressions,
+    course,
+    location,//year
+    occupation,//branch
+    email,
+    // viewedProfile,
+    // impressions,
     friends,
   } = user;
 
@@ -83,19 +87,27 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* SECOND ROW */}
       <Box p="1rem 0">
         <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-          <LocationOnOutlined fontSize="large" sx={{ color: main }} />
-          <Typography color={medium}>{location}</Typography>
+          <img src="../assets/course.png" alt="course" width={25} />
+          <Typography color={medium}>Course-</Typography>
+          <Typography color={medium}>B.Tech{course}</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+          <img src="../assets/dept.png" alt="department" width={25} />
+          <Typography color={medium}>Department-</Typography>
+          <Typography color={medium}>{occupation}</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap="1rem">
-          <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
-          <Typography color={medium}>{occupation}</Typography>
+          {/* <LocationOnOutlined fontSize="large" sx={{ color: main }} /> */}
+          <img src="../assets/year.png" alt="year" width={25} />
+          <Typography color={medium}>Year-</Typography>
+          <Typography color={medium}>{location}</Typography>
         </Box>
       </Box>
 
       <Divider />
 
       {/* THIRD ROW */}
-      <Box p="1rem 0">
+      {/* <Box p="1rem 0">
         <FlexBetween mb="0.5rem">
           <Typography color={medium}>Who's viewed your profile</Typography>
           <Typography color={main} fontWeight="500">
@@ -108,6 +120,28 @@ const UserWidget = ({ userId, picturePath }) => {
             {impressions}
           </Typography>
         </FlexBetween>
+      </Box> */}
+      <Box p="1rem 0">
+        <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
+          Contact Info
+        </Typography>
+        <FlexBetween gap="1rem">
+            <img src="../assets/email.png" alt="email" width={25} />
+            <Box>
+              <Typography 
+                color={medium} 
+                fontWeight="500" 
+                sx={{
+                  "&:hover": {
+                    color: palette.primary.light,
+                    cursor: "pointer",
+                  },
+                }}
+              >{email}
+              </Typography>
+            </Box>
+          </FlexBetween>
+                
       </Box>
 
       <Divider />
@@ -137,6 +171,32 @@ const UserWidget = ({ userId, picturePath }) => {
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
+              </Typography>
+              <Typography color={medium}>Network Platform</Typography>
+            </Box>
+          </FlexBetween>
+          <EditOutlined sx={{ color: main }} />
+        </FlexBetween>
+
+        <FlexBetween gap="1rem">
+          <FlexBetween gap="1rem">
+            <img src="../assets/insta.png" alt="instagram" width={25}/>
+            <Box>
+              <Typography color={main} fontWeight="500">
+                Instagram
+              </Typography>
+              <Typography color={medium}>Network Platform</Typography>
+            </Box>
+          </FlexBetween>
+          <EditOutlined sx={{ color: main }} />
+        </FlexBetween>
+
+        <FlexBetween gap="1rem">
+          <FlexBetween gap="1rem">
+            <img src="../assets/snap.png" alt="snapchat" width={25}/>
+            <Box>
+              <Typography color={main} fontWeight="500">
+                Snapchat
               </Typography>
               <Typography color={medium}>Network Platform</Typography>
             </Box>

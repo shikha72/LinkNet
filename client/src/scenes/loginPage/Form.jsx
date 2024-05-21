@@ -24,6 +24,7 @@ const registerSchema = yup.object().shape({
   location: yup.string().required("required"),
   occupation: yup.string().required("required"),
   picture: yup.string().required("required"),
+  course:yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
@@ -39,6 +40,7 @@ const initialValuesRegister = {
   location: "",
   occupation: "",
   picture: "",
+  course: "",
 };
 
 const initialValuesLogin = {
@@ -152,7 +154,17 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Location"
+                  label="Course"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.course}
+                  name="course"
+                  error={Boolean(touched.course) && Boolean(errors.course)}
+                  helperText={touched.course && errors.course}
+                  sx={{ gridColumn: "span 4" }}
+                />
+                <TextField
+                  label="Year"//"Location"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.location}
@@ -162,7 +174,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
-                  label="Occupation"
+                  label="Branch"//"Occupation"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
@@ -195,7 +207,7 @@ const Form = () => {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p>Add Your Profile Picture Here</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>
